@@ -34,7 +34,7 @@ module.exports = async (deployer, network, accounts)=> {
 
   //Add tokenMinter in MinterRole on tokenBRZ
   console.log("token.grantRole ADMIN_ROLE to", tokenMinter.address);
-  token.grantRole (ADMIN_ROLE, tokenMinter.address, {from: accounts[0]});
+  await token.grantRole (ADMIN_ROLE, tokenMinter.address, {from: accounts[0]});
 
   result = await token.hasRole(ADMIN_ROLE, tokenMinter.address);
   console.log("tokenMinter.address admin in token", result);

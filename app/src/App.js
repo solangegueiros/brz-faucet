@@ -11,8 +11,8 @@ function App() {
   const [token, setToken] = useState(null);  
   const [name, setName] = useState('');
 
-  const [inputMintValue, setInputMintValue] = useState();
-  const [inputMintAddress, setInputMintAddress] = useState();  
+  const [inputValue, setInputValue] = useState();
+  const [inputAddress, setInputAddress] = useState();  
  
 
   useEffect(() => {
@@ -74,17 +74,17 @@ function App() {
     loadWeb3().then(() => loadBlockchainData());
   }, []);
 
-  const handleMint = e => {
+  const handleGetTokens = e => {
     e.preventDefault();
 
-    console.log ('inputMintAddress: ', inputMintAddress);
-    console.log ('inputMintValue: ', inputMintValue);
-    tokenMinter.methods.mint(inputMintAddress.toLowerCase(), inputMintValue)
+    console.log ('inputAddress: ', inputAddress);
+    console.log ('inputValue: ', inputValue);
+    tokenMinter.methods.mint(inputAddress.toLowerCase(), inputValue)
       .send({ from: account })
       .once('receipt', receipt => {
         console.log ('transaction receipt: ', receipt);
-        setInputMintAddress('');
-        setInputMintValue();
+        setInputAddress('');
+        setInputValue();
       });
   };
    
@@ -97,28 +97,37 @@ function App() {
           <h1>BRZ Faucet</h1>
           {token && <p>Token {name}: {token._address}</p>}
           {account && <p>Your account: {account}</p>}
+          <p>Networks: 
+            <br/>
+            Ethereum Rinkeby, <br/>
+            Binance Smart Chain Testnet <br/>
+            RSK Testnet <br/>
+            <br/>
+            Tokens will be issued to the selected network in your web wallet.
+          </p>
+          <p>Network selected: </p>
         </div>
 
         <Row>
           <Col>
-            <Form onSubmit={handleMint}>
+            <Form onSubmit={handleGetTokens}>
               <Form.Group controlId="formMintAddress">
                 <Form.Label>Address</Form.Label>
                 <Form.Control
                   placeholder="Address"
-                  onChange={(e) => setInputMintAddress(e.target.value)}
-                  value={inputMintAddress}
+                  onChange={(e) => setInputAddress(e.target.value)}
+                  value={inputAddress}
                 />
               </Form.Group>
               <Form.Group controlId="formMintValue">
-                <Form.Label>Value</Form.Label>
+                <Form.Label>Amount</Form.Label>
                 <Form.Control
-                  placeholder="Value"
-                  onChange={(e) => setInputMintValue(e.target.value)}
-                  value={inputMintValue}
+                  placeholder="Amount"
+                  onChange={(e) => setInputValue(e.target.value)}
+                  value={inputValue}
                 />
               </Form.Group>
-              <Button type="submit">Mint</Button>
+              <Button type="submit">Get Tokens</Button>
             </Form>          
           </Col>
         </Row>
