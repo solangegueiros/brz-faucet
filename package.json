@@ -1,0 +1,28 @@
+{
+  "name": "brztoken-faucet",
+  "version": "1.0.0",
+  "description": "Faucet to token BRZ",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solangegueiros/brz-faucet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/solangegueiros/brz-faucet/issues"
+  },
+  "homepage": "https://github.com/solangegueiros/brz-faucet#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "4.1.0",
+    "@truffle/hdwallet-provider": "1.4.0",
+    "dotenv": "^10.0.0"
+  }
+}
