@@ -44,11 +44,11 @@ function App() {
         const networkId = await web3.eth.net.getId();
         console.log ('networkId: ', networkId);
 
-        // Check if ElFederal has been published on that network
+        // Check if has been published on that network
         var networkData = TokenMinter.networks[networkId];        
         if (networkData) {
           console.log ('TokenMinter address: ', networkData.address);
-          var contract = new web3.eth.Contract(
+          var contract = await new web3.eth.Contract(
             TokenMinter.abi,
             networkData.address,
           );
